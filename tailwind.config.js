@@ -7,10 +7,14 @@ module.exports = {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
       },
+      colors: {
+        "gradient-from": "#008b79",
+        "gradient-to": "#1180a1",
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwindcss-textshadow")],
 };
