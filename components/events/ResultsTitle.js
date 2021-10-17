@@ -7,7 +7,9 @@ const ResultsTitle = ({ date }) => {
   });
   return (
     <section className="w-11/12 max-w-2xl mx-auto my-8 text-center">
-      <h1>Events in {readableDate}</h1>
+      <h1 className="m-6 text-2xl font-bold">
+        Events in <span className="italic underline">{readableDate}</span>
+      </h1>
       <Button link="/events">Show all events</Button>
     </section>
   );
