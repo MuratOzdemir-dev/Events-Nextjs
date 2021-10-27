@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { useState, useEffect } from "react";
 import useSWR from "swr";
+import axios from "axios";
+
 import EventList from "../../components/events/EventList";
 import ResultsTitle from "../../components/events/ResultsTitle";
 import ErrorAlert from "../../components/ui/ErrorAlert";
@@ -10,10 +11,18 @@ import ErrorAlert from "../../components/ui/ErrorAlert";
 const FilteredEventsPage = () => {
   const [loadedEvents, setLoadedEvents] = useState([]);
   const router = useRouter();
-  const [year, month] = router?.query.slug;
+  let year = "";
+  let month = "";
+  if (router.query.slug) {
+    year = router.query?.slug[0];
+    month = router.query?.slug[1];
+  }
+
+  const fetcher = (url) => axios.get(url).then((res) => res.data);
 
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_FIREBASE_API}/events.json`
+    `${process.env.NEXT_PUBLIC_FIREBASE_API}/events.json`,
+    fetcher
   );
 
   useEffect(() => {
