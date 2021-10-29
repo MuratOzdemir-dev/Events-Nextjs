@@ -1,10 +1,19 @@
+import Head from "next/head";
 import axios from "axios";
 
 import EventList from "../components/events/EventList";
 import ErrorAlert from "../components/ui/ErrorAlert";
+
 const HomePage = ({ featuredEvents, errorMessage }) => {
   return (
     <>
+      <Head>
+        <title>NextJS Events</title>
+        <meta
+          name="description"
+          content="Find a lot of great events that allow you to evolve..."
+        />
+      </Head>
       {errorMessage && (
         <ErrorAlert>
           <p>{errorMessage}</p>

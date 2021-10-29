@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import useSWR from "swr";
 import axios from "axios";
@@ -35,8 +36,20 @@ const FilteredEventsPage = () => {
     }
   }, [data]);
 
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`All events for ${+month}/${+year}.`} />
+    </Head>
+  );
+
   if (!loadedEvents) {
-    return <p className="m-4 text-xl text-center text-blue-700">Loading...</p>;
+    return (
+      <>
+        {pageHeadData}
+        <p className="m-4 text-xl text-center text-blue-700">Loading...</p>
+      </>
+    );
   }
 
   const filteredEvents = loadedEvents.filter((event) => {
@@ -49,6 +62,7 @@ const FilteredEventsPage = () => {
   if (filteredEvents.length === 0 || !filteredEvents || error) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="m-4 text-xl text-center">
             No Events found for the chosen filter!
@@ -67,6 +81,7 @@ const FilteredEventsPage = () => {
 
   return (
     <>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>

@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
+
 import Button from "../ui/Button";
 import DateIcon from "../icons/DateIcon";
 import AddressIcon from "../icons/AddressIcon";
@@ -21,7 +23,7 @@ const EventItem = (props) => {
 
   return (
     <li className="flex flex-col gap-4 m-4 overflow-hidden bg-white rounded-lg shadow md:flex-row md:gap-0">
-      <img src={image} alt={title} className="object-cover w-full " />
+      <Image src={image} alt={title} width={640} height={480} />
       <div className="w-full px-4 text-center">
         <div>
           <h2 className="my-2 text-xl font-semibold text-left">{title}</h2>

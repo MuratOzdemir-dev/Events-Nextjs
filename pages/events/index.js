@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import axios from "axios";
 
 import EventList from "../../components/events/EventList";
@@ -22,6 +23,13 @@ const AllEventsPage = ({ events, errorMessage }) => {
 
   return (
     <>
+      <Head>
+        <title>All Events</title>
+        <meta
+          name="description"
+          content="Find a lot of great events that allow you to evolve..."
+        />
+      </Head>
       <EventSearch onSearch={findEventsHandler} />
       <EventList items={events} />
     </>

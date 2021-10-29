@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import axios from "axios";
 
 import EventSummary from "../../components/event-details/EventSummary";
@@ -24,6 +25,11 @@ const EventDetailPage = ({ selectedEvent, errorMessage }) => {
 
   return (
     <>
+      <Head>
+        <title>{selectedEvent.title}</title>
+        <meta name="description" content={selectedEvent.description} />
+      </Head>
+
       <EventSummary title={selectedEvent.title} />
       <EventLogistics
         date={selectedEvent.date}
