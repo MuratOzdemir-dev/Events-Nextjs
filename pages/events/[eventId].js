@@ -41,7 +41,7 @@ const EventDetailPage = ({ selectedEvent, errorMessage }) => {
       <EventContent>
         <p>{selectedEvent.description}</p>
       </EventContent>
-      <Comments />
+      <Comments eventId={selectedEvent.id} />
     </>
   );
 };

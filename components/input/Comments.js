@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import CommentList from "./CommentList";
 import NewComment from "./NewComment";
 
 const Comments = ({ eventId }) => {
   const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState([]);
 
-  const toggleCommentsHandler = () => {
+  useEffect(() => {
+    if (showComments) {
+      axios.get(`/api/comments/${eventId}`).then((response) => {
+        setComments(response.data.comments);
+      });
+    }
+  }, [showComments]);
+
+  const toggleCommentsHandler = async () => {
     setShowComments((prevState) => !prevState);
   };
 
-  const addCommentHandler = (commentData) => {
-    // Send data to API
+  const addCommentHandler = async (commentData) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/${eventId}`,
+        commentData
+      );
+      const data = await response.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -23,7 +42,7 @@ const Comments = ({ eventId }) => {
         {showComments ? "Hide Comments" : "Show Comments"}
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList />}
+      {showComments && <CommentList items={comments} />}
     </section>
   );
 };

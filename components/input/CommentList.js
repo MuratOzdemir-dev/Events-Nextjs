@@ -1,18 +1,14 @@
-const CommentList = () => {
+const CommentList = ({ items }) => {
   return (
     <ul className="flex flex-col gap-4">
-      <li className="py-2 text-left border-b border-secondary">
-        <p className="m-0">My comment is amazing!</p>
-        <div className="italic text-right">
-          By <address className="inline">Maximilian</address>
-        </div>
-      </li>
-      <li className="py-2 text-left border-b border-secondary">
-        <p className="m-0">My comment is amazing!</p>
-        <div className="italic text-right">
-          By <address className="inline">Maximilian</address>
-        </div>
-      </li>
+      {items.map((item) => (
+        <li className="py-2 text-left border-b border-secondary" key={item.id}>
+          <p className="m-0">{item.text}</p>
+          <div className="italic text-right">
+            By <span className="inline italic">{item.name}</span>
+          </div>
+        </li>
+      ))}
     </ul>
   );
 };

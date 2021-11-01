@@ -1,6 +1,20 @@
+import { useRef } from "react";
+import axios from "axios";
+
 const NewsletterRegistration = () => {
-  const registrationHandler = (e) => {
+  const emailInputRef = useRef(null);
+
+  const registrationHandler = async (e) => {
     e.preventDefault();
+    const enteredEmail = emailInputRef.current.value;
+    try {
+      const response = await axios.post("/api/newsletter", {
+        email: enteredEmail,
+      });
+      console.log(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
     // fetch user input (state or refs)
     // optional: validate input
     // send valid data to API
@@ -9,7 +23,7 @@ const NewsletterRegistration = () => {
   return (
     <section className="w-11/12 max-w-xs mx-auto my-12">
       <h2 className="text-center">Sign up to stay updated!</h2>
-      <form>
+      <form onSubmit={registrationHandler}>
         <div className="flex">
           <input
             className="flex-1 p-1 border rounded rounded-tr-none rounded-br-none border-secondary"
@@ -17,8 +31,12 @@ const NewsletterRegistration = () => {
             id="email"
             placeholder="Your email"
             aria-label="Your email"
+            ref={emailInputRef}
           />
-          <button className="border bg-primary border-primary rounded-md text-[#dafff7] rounded-tl-none rounded-bl-none cursor-pointer active:bg-[#02afa1] hover:bg-[#02afa1] active:border-[#02afa1] hover:border-[#02afa1]">
+          <button
+            type="submit"
+            className="border bg-primary border-primary rounded-md text-[#dafff7] rounded-tl-none rounded-bl-none cursor-pointer active:bg-[#02afa1] hover:bg-[#02afa1] active:border-[#02afa1] hover:border-[#02afa1]"
+          >
             Register
           </button>
         </div>

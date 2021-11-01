@@ -35,7 +35,10 @@ const NewComment = ({ onAddComment }) => {
   };
 
   return (
-    <form className="w-full p-4 mx-auto my-8 rounded-md shadow-sm bg-primary">
+    <form
+      className="w-full p-4 mx-auto my-8 rounded-md shadow-sm bg-primary"
+      onSubmit={sendCommentHandler}
+    >
       <div className="flex flex-wrap gap-4">
         <div className="mb-2 flex-1 min-w-[10rem]">
           <label
@@ -81,7 +84,12 @@ const NewComment = ({ onAddComment }) => {
         />
       </div>
       {isInvalid && <p>Please enter a valid email address and comment!</p>}
-      <button className="p-1 bg-white">Submit</button>
+      <button
+        type="submit"
+        className="px-4 py-2 bg-white rounded text-primary hover:scale-105"
+      >
+        Submit
+      </button>
     </form>
   );
 };
