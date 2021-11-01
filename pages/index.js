@@ -3,6 +3,7 @@ import axios from "axios";
 
 import EventList from "../components/events/EventList";
 import ErrorAlert from "../components/ui/ErrorAlert";
+import NewsletterRegistration from "../components/input/NewsletterRegistration";
 
 const HomePage = ({ featuredEvents, errorMessage }) => {
   return (
@@ -19,6 +20,7 @@ const HomePage = ({ featuredEvents, errorMessage }) => {
           <p>{errorMessage}</p>
         </ErrorAlert>
       )}
+      <NewsletterRegistration />
       <EventList items={featuredEvents} />
     </>
   );

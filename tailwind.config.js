@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         "gradient-from": "#008b79",
         "gradient-to": "#1180a1",
+        primary: "#03be9f",
+        secondary: "#cccccc",
       },
     },
   },
