@@ -15,9 +15,6 @@ const NewsletterRegistration = () => {
     } catch (error) {
       console.log(error);
     }
-    // fetch user input (state or refs)
-    // optional: validate input
-    // send valid data to API
   };
 
   return (

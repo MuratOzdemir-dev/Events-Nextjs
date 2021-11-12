@@ -10,9 +10,15 @@ const Comments = ({ eventId }) => {
 
   useEffect(() => {
     if (showComments) {
-      axios.get(`/api/comments/${eventId}`).then((response) => {
-        setComments(response.data.comments);
-      });
+      try {
+        axios.get(`/api/comments/${eventId}`).then((response) => {
+          setComments(response.data.comments);
+        });
+      } catch (error) {
+        setComments([]);
+        setShowComments(false);
+        console.log(error);
+      }
     }
   }, [showComments]);
 
@@ -42,7 +48,8 @@ const Comments = ({ eventId }) => {
         {showComments ? "Hide Comments" : "Show Comments"}
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList items={comments} />}
+      {/* Comments dizisini en son eklenen başta gözükmesi için reverse() işlemi uygulandı */}
+      {showComments && <CommentList items={comments.reverse()} />}
     </section>
   );
 };
