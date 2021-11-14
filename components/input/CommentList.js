@@ -1,6 +1,6 @@
 const CommentList = ({ items }) => {
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col-reverse gap-4">
       {items.map((item) => (
         <li className="py-2 text-left border-b border-secondary" key={item.id}>
           <p className="m-0">{item.text}</p>
