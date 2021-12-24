@@ -21,10 +21,12 @@ const FilteredEventsPage = () => {
 
   const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_FIREBASE_API}/events.json`,
-    fetcher
-  );
+  // BU SAYFA CLIENT'E API END POINT GONDERDIGI ICIN IPTAL EDILMISTIR.
+
+  // const { data, error } = useSWR(
+  //   `${process.env.NEXT_PUBLIC_FIREBASE_API}/events.json`,
+  //   fetcher
+  // );
 
   useEffect(() => {
     if (data) {

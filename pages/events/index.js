@@ -30,7 +30,7 @@ const AllEventsPage = ({ events, errorMessage }) => {
           content="Find a lot of great events that allow you to evolve..."
         />
       </Head>
-      <EventSearch onSearch={findEventsHandler} />
+      {/* <EventSearch onSearch={findEventsHandler} /> */}
       <EventList items={events} />
     </>
   );
