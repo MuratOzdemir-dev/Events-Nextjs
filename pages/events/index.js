@@ -3,7 +3,6 @@ import Head from "next/head";
 import axios from "axios";
 
 import EventList from "../../components/events/EventList";
-import EventSearch from "../../components/events/EventSearch";
 import ErrorAlert from "../../components/ui/ErrorAlert";
 
 const AllEventsPage = ({ events, errorMessage }) => {
@@ -30,7 +29,6 @@ const AllEventsPage = ({ events, errorMessage }) => {
           content="Find a lot of great events that allow you to evolve..."
         />
       </Head>
-      {/* <EventSearch onSearch={findEventsHandler} /> */}
       <EventList items={events} />
     </>
   );
